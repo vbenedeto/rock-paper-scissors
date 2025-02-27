@@ -2,19 +2,22 @@
 function getComputerChoice() {
   const choice = Math.floor(Math.random() * 3);
   if (choice === 0) {
-    return "rock";  
+    return "Rock";  
   } else if (choice === 1) {
-    return "scissors";
+    return "Scissors";
   } else {
-    return "paper";
+    return "Paper";
   }
 }
 
-const container = document.querySelector("#container");
-const result = document.createElement("div");
+const resultContainer = document.querySelector("#result-container");
+const result = document.createElement("p");
+result.classList.add("result-text");
+resultContainer.appendChild(result);
+
 const round = document.createElement("p");
-container.appendChild(result);
-container.appendChild(round);
+round.classList.add("round-text");
+resultContainer.appendChild(round);
 
 let computerScore = 0;
 let humanScore = 0;
@@ -43,7 +46,8 @@ function playGame(userChoice, computerChoice) {
     result.textContent = `You lose! ${computerChoice} beats ${userChoice}!`;
   }
   
-  round.textContent = `Score - You: ${humanScore}, Computer: ${computerScore}`;
+  const roundText = `You: ${humanScore}\nComputer: ${computerScore}`;
+  round.innerHTML = roundText.replace(/\n/g, "<br>");
 
   checkForWinner();
 

@@ -1,0 +1,70 @@
+body {
+  font-family: 'Orbitron', sans-serif;  
+  margin: 0;
+  height: 100vh;
+  background: #b93e3e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+#btns-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+}
+
+#result-container {
+  display: flex;
+  justify-content: center;
+}
+
+#Rock {
+  background-color: #808080;
+  color: white;
+}
+
+#Paper {
+  background-color: #FFFFFF;
+  border: 1px solid #000;
+}
+
+#Scissors {
+  background-color: #FFC300;
+}
+
+button {
+  font-family: 'Orbitron', sans-serif;   
+  padding: 20px 60px;
+  margin: 10px;
+  border: 2px solid #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 40px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#result-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-text {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin: 0;
+}
+
+.round-text {
+  color: #eae0e0;
+  font-size: 25px;
+}
