@@ -19,6 +19,12 @@ const round = document.createElement("p");
 round.classList.add("round-text");
 resultContainer.appendChild(round);
 
+const resetBtn = document.createElement("button");
+resetBtn.textContent = "Play Again";
+resetBtn.classList.add("resetBtn");
+resetBtn.setAttribute("style", "display: none");
+resultContainer.appendChild(resetBtn);
+
 let computerScore = 0;
 let humanScore = 0;
 
@@ -26,18 +32,21 @@ function checkForWinner() {
   if (humanScore === 5 || computerScore === 5) {
     const winnerMessage = humanScore === 5 ? " Congratulations 🎉 ! You won the game!" : " Sorry! Computer won the game! 💻";
     result.textContent = winnerMessage;
+    resetBtn.setAttribute("style", "display: block");
     humanScore = 0;
     computerScore = 0;
   }
 }
 
 function playGame(userChoice, computerChoice) {
+  console.log(userChoice);
+  console.log(computerChoice);
   if (userChoice === computerChoice) {
     result.textContent = `It's a tie! Both choices were ${computerChoice}!`;
   } else if (
-    (userChoice === "rock" && computerChoice === "scissors") ||
-    (userChoice === "paper" && computerChoice === "rock") || 
-    (userChoice === "scissors" && computerChoice === "paper")
+    (userChoice === "Rock" && computerChoice === "Scissors") ||
+    (userChoice === "Paper" && computerChoice === "Rock") || 
+    (userChoice === "Scissors" && computerChoice === "Paper")
   ) {
       humanScore += 1;
       result.textContent = `You win! ${userChoice} beats ${computerChoice}!`;
@@ -54,10 +63,17 @@ function playGame(userChoice, computerChoice) {
   console.log("Round fineshed.");
 }
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("#btns-container button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     playGame(button.id, getComputerChoice());
   })
 });
+
+resetBtn.addEventListener("click", () => {
+  result.textContent = "";
+  round.textContent = "";
+  resetBtn.setAttribute("style", "display: none");
+});
+
 
