@@ -69,7 +69,7 @@ button:hover {
   font-size: 25px;
 }
 
-.resetBtn {
+#resetBtn {
   font-size: 25px;
   padding: 10px 20px;
   width: 200px;
