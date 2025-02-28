@@ -1,14 +1,5 @@
-
-function getComputerChoice() {
-  const choice = Math.floor(Math.random() * 3);
-  if (choice === 0) {
-    return "Rock";  
-  } else if (choice === 1) {
-    return "Scissors";
-  } else {
-    return "Paper";
-  }
-}
+let computerScore = 0;
+let humanScore = 0;
 
 const resultContainer = document.querySelector("#result-container");
 const result = document.createElement("p");
@@ -19,28 +10,34 @@ const round = document.createElement("p");
 round.classList.add("round-text");
 resultContainer.appendChild(round);
 
-const resetBtn = document.createElement("button");
-resetBtn.textContent = "Play Again";
-resetBtn.classList.add("resetBtn");
-resetBtn.setAttribute("style", "display: none");
-resultContainer.appendChild(resetBtn);
+const buttons = document.querySelectorAll("#btns-container button");
+const resetBtn = document.getElementById("resetBtn");
 
-let computerScore = 0;
-let humanScore = 0;
+function showGameButtons() {
+  buttons.forEach((button) => {
+    button.style.display = "block";
+  });
+  resetBtn.style.display = "none";
+}
+
+function showResetButton() {
+  buttons.forEach((button) => {
+   button.style.display = "none";
+  });
+  resetBtn.style.display = "block";
+}
 
 function checkForWinner() {
   if (humanScore === 5 || computerScore === 5) {
     const winnerMessage = humanScore === 5 ? " Congratulations 🎉 ! You won the game!" : " Sorry! Computer won the game! 💻";
     result.textContent = winnerMessage;
-    resetBtn.setAttribute("style", "display: block");
+    showResetButton();
     humanScore = 0;
     computerScore = 0;
   }
 }
 
 function playGame(userChoice, computerChoice) {
-  console.log(userChoice);
-  console.log(computerChoice);
   if (userChoice === computerChoice) {
     result.textContent = `It's a tie! Both choices were ${computerChoice}!`;
   } else if (
@@ -63,7 +60,18 @@ function playGame(userChoice, computerChoice) {
   console.log("Round fineshed.");
 }
 
-const buttons = document.querySelectorAll("#btns-container button");
+function getComputerChoice() {
+  const choice = Math.floor(Math.random() * 3);
+  if (choice === 0) {
+    return "Rock";  
+  } else if (choice === 1) {
+    return "Scissors";
+  } else {
+    return "Paper";
+  }
+}
+
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     playGame(button.id, getComputerChoice());
@@ -73,7 +81,7 @@ buttons.forEach((button) => {
 resetBtn.addEventListener("click", () => {
   result.textContent = "";
   round.textContent = "";
-  resetBtn.setAttribute("style", "display: none");
+  showGameButtons();
 });
 
 
